@@ -6,12 +6,18 @@ class Textfield extends StatelessWidget {
 
   final String textlabel;
   final bool obscuretext;
+  final bool marginRight;
+  final bool marginLeft;
+
 
   const Textfield( 
     {
       super.key,
       required this.textlabel,
-      this.obscuretext = false
+      this.obscuretext = false,
+      this.marginRight = true ,
+      this.marginLeft  = true ,
+
     }
     );
 
@@ -19,7 +25,14 @@ class Textfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card
     (
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+      margin: EdgeInsets.only(
+        left: marginLeft ? 20 : 5,
+        right: marginRight ? 20 : 5,
+        top: 7,
+        bottom: 7,
+      ),
+
+
       elevation: 6,
       child:Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,7 +42,7 @@ class Textfield extends StatelessWidget {
             margin: EdgeInsets.only(left: 12, top:8),
             child:Text(
               textlabel,
-              style:GoogleFonts.ubuntu(fontSize: 11, fontWeight: FontWeight.w900 ),
+              style:GoogleFonts.ubuntu(fontSize: 11, fontWeight: FontWeight.w700 ),
               textAlign: TextAlign.left,
               ),
           ),
