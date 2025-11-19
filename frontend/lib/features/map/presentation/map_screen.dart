@@ -1,60 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:aurabus/features/map/presentation/stop_details_modal.dart';
 
 import 'package:aurabus/features/map/data/map_providers.dart';
+import 'map_controller.dart';
 
 class MapScreen extends ConsumerStatefulWidget {
   const MapScreen({super.key});
 
   @override
-  ConsumerState<MapScreen> createState() => MapScreenState();
+  ConsumerState<MapScreen> createState() => _MapScreenState();
 }
 
-class MapScreenState extends ConsumerState<MapScreen> {
-  late GoogleMapController mapController;
+class _MapScreenState extends ConsumerState<MapScreen>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
 
-  final LatLng _center = const LatLng(46.067808715456785, 11.130308912105304);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
+  final LatLng _center = const LatLng(46.0678, 11.1303);
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
+    final mapController = ref.read(mapControllerProvider);
+
     final mapStyleAsync = ref.watch(mapStyleProvider);
-    final markersAsync = ref.watch(markersProvider);
-
     final mapStyle = mapStyleAsync.value;
-    final rawMarkers = markersAsync.value ?? {};
 
-    // Add "onTap" directly to markers
-    final markers = rawMarkers
-        .map(
-          (marker) => marker.copyWith(
-            onTapParam: () {
-              final stopId = marker.markerId.value;
+    final rawMarkers = ref.watch(markersProvider).value ?? {};
 
-              // Open bottom modal sheet
-              showModalBottomSheet(
-                context: context,
-                useSafeArea: true,
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                builder: (_) => StopDetailsModal(stopId: stopId),
-              );
-            },
-          ),
-        )
-        .toSet();
+    final markers = rawMarkers.map((marker) {
+      return marker.copyWith(
+        onTapParam: () {
+          final stopId = marker.markerId.value;
+          mapController.openStopModal(context, stopId);
+        },
+      );
+    }).toSet();
 
     return GoogleMap(
-      onMapCreated: (controller) {
-        _onMapCreated(controller);
-        if (mapStyle != null) controller.setMapStyle(mapStyle);
-      },
-      initialCameraPosition: CameraPosition(target: _center, zoom: 13.0),
+      initialCameraPosition: CameraPosition(target: _center, zoom: 13),
+      onMapCreated: mapController.onMapCreated,
+      style: mapStyle,
       markers: markers,
       zoomControlsEnabled: true,
       mapType: MapType.normal,
