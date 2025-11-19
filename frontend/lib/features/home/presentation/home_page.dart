@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:aurabus/routing/router.dart';
+import 'package:aurabus/features/tickets/presentation/ticket_page.dart';
+import 'package:aurabus/features/map/presentation/map_screen.dart';
+import 'package:aurabus/features/account/presentation/account_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final Widget child;
 
   const HomePage({super.key, required this.child});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // All tabs kept alive
+  final List<Widget> _pages = const [TicketPage(), MapScreen(), AccountPage()];
 
   int _calculateSelectedIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
@@ -15,7 +26,7 @@ class HomePage extends StatelessWidget {
     return 0;
   }
 
-  void _onItemTapped(int index, BuildContext context) {
+  void _onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
         context.go(AppRoute.tickets);
@@ -34,22 +45,18 @@ class HomePage extends StatelessWidget {
     final selectedIndex = _calculateSelectedIndex(context);
 
     return Scaffold(
-      body: child,
-
+      body: IndexedStack(index: selectedIndex, children: _pages),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
-        onTap: (index) => _onItemTapped(index, context),
+        onTap: (i) => _onItemTapped(context, i),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.airplane_ticket, size: 28),
+            icon: Icon(Icons.confirmation_number_outlined),
             label: 'Tickets',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.map_outlined), label: 'Map'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 28),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle, size: 28),
+            icon: Icon(Icons.person_outline),
             label: 'Account',
           ),
         ],

@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:aurabus/app.dart';
-import 'package:aurabus/core/providers/app_state.dart';
+import 'package:aurabus/features/map/data/map_providers.dart';
 import 'package:aurabus/features/account/presentation/account_page.dart';
 import 'package:aurabus/features/tickets/presentation/ticket_page.dart';
 
@@ -35,26 +35,25 @@ void main() {
     setupMockGoogleMaps();
   });
   group('Loading and Initial State Tests', () {
-    testWidgets(
-      'Shows CircularProgressIndicator while providers are loading',
-      (WidgetTester tester) async {
-        final loadingCompleter = Completer<String?>();
-        final markersCompleter = Completer<Set<Marker>>();
+    testWidgets('Shows CircularProgressIndicator while providers are loading', (
+      WidgetTester tester,
+    ) async {
+      final loadingCompleter = Completer<String?>();
+      final markersCompleter = Completer<Set<Marker>>();
 
-        await tester.pumpWidget(
-          ProviderScope(
-            overrides: [
-              mapStyleProvider.overrideWith((ref) => loadingCompleter.future),
-              markersProvider.overrideWith((ref) => markersCompleter.future),
-            ],
-            child: const MyApp(),
-          ),
-        );
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            mapStyleProvider.overrideWith((ref) => loadingCompleter.future),
+            markersProvider.overrideWith((ref) => markersCompleter.future),
+          ],
+          child: const MyApp(),
+        ),
+      );
 
-        expect(find.byType(CircularProgressIndicator), findsOneWidget);
-        expect(find.byType(GoogleMap), findsNothing);
-      },
-    );
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(find.byType(GoogleMap), findsNothing);
+    });
 
     testWidgets('Shows GoogleMap when providers load successfully', (
       WidgetTester tester,
@@ -90,7 +89,8 @@ void main() {
           overrides: [
             mapStyleProvider.overrideWith((ref) => Future.value('{}')),
             markersProvider.overrideWith(
-              (ref) => Future.error('Test Error: Unable to load initial assets.'),
+              (ref) =>
+                  Future.error('Test Error: Unable to load initial assets.'),
             ),
           ],
           child: const MyApp(),
@@ -155,10 +155,7 @@ void main() {
 
         expect(find.byType(AccountPage), findsOneWidget);
         expect(find.text('Account Settings'), findsOneWidget);
-        expect(
-          find.byType(TicketPage),
-          findsNothing,
-        );
+        expect(find.byType(TicketPage), findsNothing);
         expect(
           tester
               .widget<BottomNavigationBar>(find.byType(BottomNavigationBar))

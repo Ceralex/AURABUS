@@ -5,6 +5,7 @@ import 'package:aurabus/features/home/presentation/home_page.dart';
 import 'package:aurabus/features/map/presentation/map_screen.dart';
 import 'package:aurabus/features/tickets/presentation/ticket_page.dart';
 import 'package:aurabus/features/account/presentation/account_page.dart';
+import 'package:aurabus/features/map/presentation/stop_details_modal.dart';
 
 class AppRoute {
   static const String tickets = '/tickets';
