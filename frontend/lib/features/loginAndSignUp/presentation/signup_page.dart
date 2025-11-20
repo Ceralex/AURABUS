@@ -29,13 +29,13 @@ class _SignupPageState extends State<SignupPage>
               SingleChildScrollView(
               child:Center(
                 child:Container(
-                  margin: EdgeInsets.only(top:40),
+                  margin: const EdgeInsets.only(top:40),
                   child: Column
                   (
                   children:[ 
                     Text("AURABUS",style:GoogleFonts.ubuntu(fontSize: 30, fontWeight: FontWeight.bold ),),
                     Text("SignUp",style:GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w300 ,color: Colors.grey ),),
-                    SizedBox(height: 50-27),
+                    const SizedBox(height: 50-27),
 
                     Row(children:[
                       Expanded(child: Textfield(textlabel: 'FIRST NAME' ,marginRight:false,)),
@@ -49,7 +49,7 @@ class _SignupPageState extends State<SignupPage>
                     Termsandconditon(),
 
                     Genericbutton(textlabel: 'Sign-Up'),
-                    Googlebutton(),
+                    Googlebutton(height: 40, width: 120),
                     ]
                     )
                   )

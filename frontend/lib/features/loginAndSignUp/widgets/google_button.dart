@@ -3,15 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Googlebutton extends StatelessWidget {
 
-  const Googlebutton( {super.key});
+  final double height;
+  final double width;
+  const Googlebutton( 
+    {
+      super.key, 
+      required this.height, 
+      required this.width,
+      });
 
   @override
   Widget build(BuildContext context) {
     return Container
     (
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-      width: 120,
-      height: 40,
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+      width: width,
+      height: height,
       child:OutlinedButton.icon(
         style: OutlinedButton.styleFrom(
           foregroundColor:Colors.blueGrey,

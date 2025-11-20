@@ -14,8 +14,6 @@ class AppRoute {
   static const String account = '/account';
   static const String login = '/login';
   static const String signup = '/signup';
-
-
 }
 
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -35,7 +33,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         GoRoute(
         path: AppRoute.signup,
         pageBuilder: (context, state) =>
-            const NoTransitionPage(child: SignupPage()),
+            const NoTransitionPage(child: SignupPage()
+            ),
           ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,

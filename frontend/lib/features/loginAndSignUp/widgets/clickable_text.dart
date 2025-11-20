@@ -16,7 +16,7 @@ class Clickabletext extends StatelessWidget {
     return 
     Container(
 
-      margin: EdgeInsets.all(7),
+      margin: const EdgeInsets.all(7),
       child:GestureDetector
       (
         onTap: fun,

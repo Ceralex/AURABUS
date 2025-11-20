@@ -13,7 +13,7 @@ class Genericbutton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container
     (
-      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       width: double.infinity,
       height: 45,
       child:TextButton(

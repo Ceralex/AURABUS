@@ -7,18 +7,21 @@ class Termsandconditon extends StatelessWidget {
   const Termsandconditon({super.key});
   @override
   Widget build(BuildContext context) {
-    return Row
+    return Container(
+      margin: const EdgeInsets.only(left: 20,right:30),
+    child:Row
       (
         mainAxisAlignment: MainAxisAlignment.center,
         children: 
         [
           Checkbox(value: false, onChanged:(bool? value) {context.go(AppRoute.login);},),
-          Text(
-            "I Agree with privacy and policy",
-            style:GoogleFonts.inter(fontSize: 13)
+          Expanded(
+            child: Text(
+            "I Agree with the Terms and Conditions and Privacy Policy",
+            style:GoogleFonts.inter(fontSize: 10),)
         )
         ],
-      );
+      ));
 
   }
 }
