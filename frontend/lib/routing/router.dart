@@ -1,4 +1,4 @@
-import 'package:aurabus/features/loginAndSignUp/presentation/SignUp.dart';
+import 'package:aurabus/features/loginAndSignUp/presentation/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,7 +6,7 @@ import 'package:aurabus/features/home/presentation/home_page.dart';
 import 'package:aurabus/features/map/presentation/map_screen.dart';
 import 'package:aurabus/features/tickets/presentation/ticket_page.dart';
 import 'package:aurabus/features/account/presentation/account_page.dart';
-import 'package:aurabus/features/loginAndSignUp/presentation/LoginPage.dart';
+import 'package:aurabus/features/loginAndSignUp/presentation/login_page.dart';
 
 class AppRoute {
   static const String tickets = '/tickets';
