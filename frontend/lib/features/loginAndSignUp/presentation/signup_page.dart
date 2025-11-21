@@ -1,8 +1,8 @@
 import 'package:aurabus/features/loginAndSignUp/widgets/clickable_text.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/generic_button.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/google_button.dart';
-import 'package:aurabus/features/loginAndSignUp/widgets/terms_and_conditon.dart';
-import 'package:aurabus/features/loginAndSignUp/widgets/text_field.dart';
+import 'package:aurabus/features/loginAndSignUp/widgets/terms_and_conditons.dart';
+import 'package:aurabus/features/loginAndSignUp/widgets/custom_text_field.dart';
 import 'package:aurabus/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,6 +18,26 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage>
 {
+
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  bool termsChecked = false;
+
+
+
+  @override
+  void dispose() {
+      firstNameController.dispose();
+      lastNameController.dispose();
+      emailController.dispose();
+      passwordController.dispose();
+      confirmPasswordController.dispose();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +58,18 @@ class _SignupPageState extends State<SignupPage>
                     const SizedBox(height: 50-27),
 
                     Row(children:[
-                      Expanded(child: Textfield(textlabel: 'FIRST NAME' ,marginRight:false,)),
-                      Expanded(child: Textfield(textlabel: 'LAST NAME'  ,marginLeft:false,)),
+                      Expanded(child: CustomTextField(textlabel: 'FIRST NAME' , controller: firstNameController, margin: EdgeInsets.only(top: 7, bottom: 7,left: 20,right:5),)),
+                      Expanded(child: CustomTextField(textlabel: 'LAST NAME'  ,  controller: lastNameController, margin: EdgeInsets.only(top: 7, bottom: 7,left: 5,right:20),)),
 
                       ]),
-                    Textfield(textlabel: 'EMAIL'),
-                    Textfield(textlabel: 'PASSWORD', obscuretext:true),
-                    Textfield(textlabel: 'CONFIRM PASSWORD', obscuretext:true),
+                    CustomTextField(textlabel: 'EMAIL', controller: emailController),
+                    CustomTextField(textlabel: 'PASSWORD', obscuretext:true , controller: passwordController),
+                    CustomTextField(textlabel: 'CONFIRM PASSWORD', obscuretext:true, controller: confirmPasswordController),
 
-                    Termsandconditon(),
+                    TermsAndCOnditions(isChecked: termsChecked, onChanged: (bool? value) 
+                    {
+                      setState(() {termsChecked = value ?? false;});
+                    },),
 
                     Genericbutton(textlabel: 'Sign-Up'),
                     Googlebutton(height: 40, width: 120),

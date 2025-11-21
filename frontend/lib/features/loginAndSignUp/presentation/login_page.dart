@@ -1,6 +1,6 @@
 import 'package:aurabus/features/loginAndSignUp/widgets/clickable_text.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/generic_button.dart';
-import 'package:aurabus/features/loginAndSignUp/widgets/text_field.dart';
+import 'package:aurabus/features/loginAndSignUp/widgets/custom_text_field.dart';
 import 'package:aurabus/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +16,16 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
 {
+  
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+    @override
+    void dispose() {
+      emailController.dispose();
+      passwordController.dispose();
+      super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +45,8 @@ class _LoginPageState extends State<LoginPage>
 
                   const SizedBox(height: 70),
 
-                  Textfield(textlabel: 'EMAIL'),
-                  Textfield(textlabel: 'PASSWORD', obscuretext:true),
+                  CustomTextField(textlabel: 'EMAIL',controller: emailController),
+                  CustomTextField(textlabel: 'PASSWORD', obscuretext:true,controller: passwordController),
                   Container(
                     alignment: Alignment.topLeft,
                     margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
