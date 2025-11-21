@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 
 class CustomTextField extends StatelessWidget {
 
@@ -37,7 +35,7 @@ class CustomTextField extends StatelessWidget {
             margin: const EdgeInsets.only(left: 12, top:8),
             child:Text(
               textlabel,
-              style:GoogleFonts.ubuntu(fontSize: 11, fontWeight: FontWeight.w700 ),
+              style:TextStyle(fontSize: 11, fontWeight: FontWeight.w700 ),
               textAlign: TextAlign.left,
               ),
           ),
@@ -45,7 +43,7 @@ class CustomTextField extends StatelessWidget {
           TextField
           (
           obscureText: obscuretext,
-          style:GoogleFonts.ubuntu(color: Theme.of(context).colorScheme.secondary,fontSize: 10),
+          style:TextStyle(color: Theme.of(context).colorScheme.secondary,fontSize: 10),
           decoration: 
             InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.never,

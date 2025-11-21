@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Genericbutton extends StatelessWidget {
 
@@ -25,7 +24,7 @@ class Genericbutton extends StatelessWidget {
         onPressed: () { },
         child: Text(
           textlabel,
-            style:GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600,color: Theme.of(context).colorScheme.onPrimary ),
+            style:TextStyle(fontSize: 11, fontWeight: FontWeight.w600,color: Theme.of(context).colorScheme.onPrimary ),
         ),
       )
     );

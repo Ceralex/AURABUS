@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 class Googlebutton extends StatelessWidget {
 
   final double height;
@@ -33,7 +31,7 @@ class Googlebutton extends StatelessWidget {
 
         label: Text(
           "Google",
-            style:GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w400,color: Colors.black ),
+            style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400,color: Colors.black ),
         ),
       ) 
     );

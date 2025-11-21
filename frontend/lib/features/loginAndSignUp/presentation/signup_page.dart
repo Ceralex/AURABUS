@@ -6,8 +6,6 @@ import 'package:aurabus/features/loginAndSignUp/widgets/terms_and_conditons.dart
 import 'package:aurabus/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 class SignupPage extends StatefulWidget {
 
   const SignupPage({super.key});
@@ -53,8 +51,8 @@ class _SignupPageState extends State<SignupPage>
                   child: Column
                   (
                   children:[ 
-                    Text("AURABUS",style:GoogleFonts.ubuntu(fontSize: 30, fontWeight: FontWeight.bold ),),
-                    Text("SignUp",style:GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w300 ,color: Theme.of(context).colorScheme.secondary ),),
+                    Text("AURABUS",style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold ),),
+                    Text("SignUp",style:TextStyle(fontSize: 13, fontWeight: FontWeight.w300 ,color: Theme.of(context).colorScheme.secondary ),),
                     const SizedBox(height: 50-27),
 
                     Row(children:[

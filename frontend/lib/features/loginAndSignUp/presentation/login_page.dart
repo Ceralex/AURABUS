@@ -4,7 +4,6 @@ import 'package:aurabus/features/loginAndSignUp/widgets/custom_text_field.dart';
 import 'package:aurabus/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -40,8 +39,8 @@ class _LoginPageState extends State<LoginPage>
               (
                 children:[ 
          
-                  Text("AURABUS",style:GoogleFonts.ubuntu(fontSize: 30, fontWeight: FontWeight.bold ),),
-                  Text("LogIn",style:GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w300 ,color:Theme.of(context).colorScheme.secondary  ),),
+                  Text("AURABUS",style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold ),),
+                  Text("LogIn",style:TextStyle(fontSize: 13, fontWeight: FontWeight.w300 ,color:Theme.of(context).colorScheme.secondary  ),),
 
                   const SizedBox(height: 70),
 

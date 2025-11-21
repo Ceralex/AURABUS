@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 class TermsAndConditions extends StatelessWidget {
 
   final bool isChecked;
@@ -28,7 +26,7 @@ class TermsAndConditions extends StatelessWidget {
             Expanded(
               child: Text(
               "I Agree with the Terms and Conditions and Privacy Policy",
-              style:GoogleFonts.inter(fontSize: 10),)
+              style:TextStyle(fontSize: 10),)
           ) 
           ],
         )

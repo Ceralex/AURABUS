@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 class Clickabletext extends StatelessWidget {
 
   final String textlabel;
@@ -22,7 +20,7 @@ class Clickabletext extends StatelessWidget {
         onTap: fun,
         child: Text(
           textlabel,
-          style:GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600  )
+          style:TextStyle(fontSize: 13, fontWeight: FontWeight.w600  )
           ),
       )
     );
