@@ -21,8 +21,8 @@ class Googlebutton extends StatelessWidget {
       height: height,
       child:OutlinedButton.icon(
         style: OutlinedButton.styleFrom(
-          foregroundColor:Colors.blueGrey,
-          backgroundColor: Colors.white,
+          foregroundColor:Theme.of(context).colorScheme.secondary,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           ),
         onPressed: () { },
         icon: Image.asset(

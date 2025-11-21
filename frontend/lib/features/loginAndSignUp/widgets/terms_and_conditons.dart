@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TermsAndCOnditions extends StatelessWidget {
+class TermsAndConditions extends StatelessWidget {
 
   final bool isChecked;
   final ValueChanged<bool?> onChanged;
-  const TermsAndCOnditions(
+  const TermsAndConditions(
     {
     super.key,
     required this.isChecked,

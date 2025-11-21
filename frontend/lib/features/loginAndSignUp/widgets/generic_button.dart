@@ -19,13 +19,13 @@ class Genericbutton extends StatelessWidget {
       child:TextButton(
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          foregroundColor:Colors.black,
-          backgroundColor: Colors.black,
+          foregroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).primaryColor,
           ),
         onPressed: () { },
         child: Text(
           textlabel,
-            style:GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600,color: Colors.white ),
+            style:GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600,color: Theme.of(context).colorScheme.onPrimary ),
         ),
       )
     );

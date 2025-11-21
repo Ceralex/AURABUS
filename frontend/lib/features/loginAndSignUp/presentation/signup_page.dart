@@ -1,8 +1,8 @@
 import 'package:aurabus/features/loginAndSignUp/widgets/clickable_text.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/generic_button.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/google_button.dart';
-import 'package:aurabus/features/loginAndSignUp/widgets/terms_and_conditons.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/custom_text_field.dart';
+import 'package:aurabus/features/loginAndSignUp/widgets/terms_and_conditons.dart';
 import 'package:aurabus/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -42,7 +42,7 @@ class _SignupPageState extends State<SignupPage>
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-          backgroundColor: const Color.fromARGB(255, 242, 242, 242),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           body: Stack(
             children: 
             [
@@ -54,7 +54,7 @@ class _SignupPageState extends State<SignupPage>
                   (
                   children:[ 
                     Text("AURABUS",style:GoogleFonts.ubuntu(fontSize: 30, fontWeight: FontWeight.bold ),),
-                    Text("SignUp",style:GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w300 ,color: Colors.grey ),),
+                    Text("SignUp",style:GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w300 ,color: Theme.of(context).colorScheme.secondary ),),
                     const SizedBox(height: 50-27),
 
                     Row(children:[
@@ -66,7 +66,7 @@ class _SignupPageState extends State<SignupPage>
                     CustomTextField(textlabel: 'PASSWORD', obscuretext:true , controller: passwordController),
                     CustomTextField(textlabel: 'CONFIRM PASSWORD', obscuretext:true, controller: confirmPasswordController),
 
-                    TermsAndCOnditions(isChecked: termsChecked, onChanged: (bool? value) 
+                    TermsAndConditions(isChecked: termsChecked, onChanged: (bool? value) 
                     {
                       setState(() {termsChecked = value ?? false;});
                     },),

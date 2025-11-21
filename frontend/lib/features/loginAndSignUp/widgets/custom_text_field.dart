@@ -45,14 +45,14 @@ class CustomTextField extends StatelessWidget {
           TextField
           (
           obscureText: obscuretext,
-          style:GoogleFonts.ubuntu(color: Color.fromRGBO(98, 98, 98, 1.0),fontSize: 10),
+          style:GoogleFonts.ubuntu(color: Theme.of(context).colorScheme.secondary,fontSize: 10),
           decoration: 
             InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.never,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none,),
               filled: true,
-              fillColor: Colors.white,
-              hoverColor: Colors.transparent,
+              fillColor: Theme.of(context).cardColor,
+              hoverColor: Theme.of(context).cardColor,
               isDense: true,
               contentPadding: const EdgeInsets.only(top:7,bottom: 9,left:9,right:9)
             ),

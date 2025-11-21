@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          backgroundColor: const Color.fromARGB(255, 242, 242, 242),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           resizeToAvoidBottomInset: false,
           body: Stack(
             children:[
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage>
                 children:[ 
          
                   Text("AURABUS",style:GoogleFonts.ubuntu(fontSize: 30, fontWeight: FontWeight.bold ),),
-                  Text("LogIn",style:GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w300 ,color: Colors.grey ),),
+                  Text("LogIn",style:GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w300 ,color:Theme.of(context).colorScheme.secondary  ),),
 
                   const SizedBox(height: 70),
 
