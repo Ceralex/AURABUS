@@ -263,7 +263,7 @@ class _BusCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  arrival.routeLongName,
+                  arrival.stopTimes.last.stopName,
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
                 ),
                 const SizedBox(height: 4),

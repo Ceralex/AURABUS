@@ -11,7 +11,7 @@ import 'models/stop_details.dart';
 final mapRepositoryProvider = Provider((ref) => MapRepository());
 
 final mapStyleProvider = FutureProvider<String?>((ref) async {
-  ref.keepAlive(); // ok for expensive map-style loads
+  ref.keepAlive();
   try {
     return await rootBundle.loadString('assets/map_style.json');
   } catch (_) {
@@ -29,7 +29,7 @@ final markersProvider = FutureProvider<Set<Marker>>((ref) async {
 
   final repo = ref.read(mapRepositoryProvider);
   final icon = await ref.read(stopIconProvider.future);
-  final stops = await repo.fetchStops();
+  final stops = await repo.loadLocalStops();
 
   return stops.map((StopData stop) {
     return Marker(
