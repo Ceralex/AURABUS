@@ -29,12 +29,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         routes: [
           GoRoute(
             path: AppRoute.tickets,
-            builder: (_, __) => const TicketPage(),
+            builder: (_, _) => const TicketPage(),
           ),
-          GoRoute(path: AppRoute.map, builder: (_, __) => const MapScreen()),
+          GoRoute(path: AppRoute.map, builder: (_, _) => const MapScreen()),
           GoRoute(
             path: AppRoute.account,
-            builder: (_, __) => const AccountPage(),
+            builder: (_, _) => const AccountPage(),
           ),
         ],
       ),

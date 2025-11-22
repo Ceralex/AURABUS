@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'models/stop_data.dart';
 
 class MapRepository {
-  final String baseUrl = "http://192.168.1.37:8888";
+  final String baseUrl = dotenv.env['API_BASE_URL'] ?? "http://localhost:8888";
 
   Future<List<StopData>> fetchStops() async {
     final res = await http.get(Uri.parse("$baseUrl/stops"));
