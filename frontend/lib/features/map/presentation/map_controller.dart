@@ -33,14 +33,14 @@ class MapController {
     _gmaps = null;
   }
 
-  void openStopModal(BuildContext context, String stopId) {
+  void openStopModal(BuildContext context, String stopId, String stopName) {
     final _ = ref.refresh(stopDetailsProvider(stopId));
 
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => StopDetailsModal(stopId: stopId),
+      builder: (_) => StopDetailsModal(stopId: stopId, stopName: stopName),
     );
   }
 

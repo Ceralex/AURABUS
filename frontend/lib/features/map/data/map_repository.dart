@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'models/stop_data.dart';
+import 'models/stop_details.dart';
 
 class MapRepository {
   final String baseUrl = dotenv.env['API_BASE_URL'] ?? "http://localhost:8888";
@@ -15,10 +16,13 @@ class MapRepository {
     return jsonList.map((e) => StopData.fromJson(e)).toList();
   }
 
-  Future<List<dynamic>> fetchStopDetails(String stopId) async {
+  Future<List<StopArrival>> fetchStopDetails(String stopId) async {
     final res = await http.get(Uri.parse("$baseUrl/stops/$stopId"));
     if (res.statusCode != 200) throw Exception("Failed details");
 
-    return jsonDecode(res.body);
+    final jsonList = jsonDecode(res.body) as List<dynamic>;
+    return jsonList
+        .map((e) => StopArrival.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 }
