@@ -217,11 +217,12 @@ class _BusCard extends StatelessWidget {
   final StopArrival arrival;
 
   const _BusCard({required this.arrival});
+  static const int _kPlaceholderOvercrowding =
+      0; // TODO: replace with real overcrowding data
 
   @override
   Widget build(BuildContext context) {
-    // TODO: replace with real overcrowding data
-    final overcrowding = 0;
+    final overcrowding = _kPlaceholderOvercrowding;
     final overcrowdingFraction = overcrowding / 100.0;
 
     final now = DateTime.now().toUtc();
@@ -275,7 +276,10 @@ class _BusCard extends StatelessWidget {
               children: [
                 Text(
                   arrival.stopTimes.last.stopName,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Row(

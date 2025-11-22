@@ -16,12 +16,19 @@ class MapRepository {
   }
 
   Future<List<StopArrival>> fetchStopDetails(String stopId) async {
-    final res = await http.get(Uri.parse("$baseUrl/stops/$stopId"));
-    if (res.statusCode != 200) throw Exception("Failed details");
-
-    final jsonList = jsonDecode(res.body) as List<dynamic>;
-    return jsonList
-        .map((e) => StopArrival.fromJson(e as Map<String, dynamic>))
-        .toList();
+    try {
+      final res = await http.get(Uri.parse("$baseUrl/stops/$stopId"));
+      if (res.statusCode != 200) {
+        throw Exception(
+          "Failed to fetch stop details for stop $stopId: ${res.statusCode}",
+        );
+      }
+      final jsonList = jsonDecode(res.body) as List<dynamic>;
+      return jsonList
+          .map((e) => StopArrival.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      throw Exception("Failed to fetch stop details for $stopId: $e");
+    }
   }
 }

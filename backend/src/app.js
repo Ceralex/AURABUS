@@ -55,7 +55,7 @@ app.get("/stops/:id", async (req, res) => {
       `${config.tnt.url}/trips_new?stopId=${stopId}&type=U&limit=30`,
       header
     );
-    if (!result.ok) {      
+    if (!result.ok) {
       return res.status(502).json({
         error: `Failed to fetch data from external API: ${result.status} ${result.statusText}`,
       });

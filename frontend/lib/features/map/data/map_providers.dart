@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/legacy.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'map_repository.dart';
@@ -50,14 +49,13 @@ final stopDetailsProvider = FutureProvider.family<List<StopArrival>, String>((
   return repo.fetchStopDetails(stopId);
 });
 
-class SelectedLinesNotifier extends StateNotifier<Set<String>> {
-  SelectedLinesNotifier() : super({});
+class SelectedLinesNotifier extends Notifier<Set<String>> {
+  @override
+  Set<String> build() => {};
 
   void toggle(String routeShortName) {
     if (state.contains(routeShortName)) {
-      final newState = {...state};
-      newState.remove(routeShortName);
-      state = newState;
+      state = {...state}..remove(routeShortName);
     } else {
       state = {...state, routeShortName};
     }
@@ -67,6 +65,6 @@ class SelectedLinesNotifier extends StateNotifier<Set<String>> {
 }
 
 final selectedLinesProvider =
-    StateNotifierProvider<SelectedLinesNotifier, Set<String>>(
-      (ref) => SelectedLinesNotifier(),
-    );
+    NotifierProvider<SelectedLinesNotifier, Set<String>>(() {
+      return SelectedLinesNotifier();
+    });
