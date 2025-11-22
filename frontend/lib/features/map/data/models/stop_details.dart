@@ -32,7 +32,7 @@ class StopArrival {
       routeId: json['routeId'] as int,
       routeShortName: json['routeShortName'] as String,
       routeLongName: json['routeLongName'] as String,
-      routeColor: _parseHexColor(json['routeColor'] as String),
+      routeColor: _parseHexColor(json['routeColor'] as String? ?? '000000'),
       busId: json['busId'] as int? ?? 0,
       delay: json['delay'] as int? ?? 0,
       lastStopId: json['lastStopId'] as int,

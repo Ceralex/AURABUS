@@ -41,7 +41,10 @@ class MapController {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => StopDetailsModal(stopId: stopId, stopName: stopName),
-    );
+    ).whenComplete(() {
+      final notifier = ref.read(selectedLinesProvider.notifier);
+      notifier.clear();
+    });
   }
 
   /// Optional: camera animation

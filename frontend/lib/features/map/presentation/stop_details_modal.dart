@@ -70,7 +70,18 @@ class _StopDetailsContent extends ConsumerWidget {
 
     final uniqueLines =
         {for (final a in arrivals) a.routeShortName: a}.values.toList()
-          ..sort((a, b) => a.routeShortName.compareTo(b.routeShortName));
+          ..sort((a, b) {
+            final numA = int.tryParse(a.routeShortName);
+            final numB = int.tryParse(b.routeShortName);
+            if (numA != null && numB != null) {
+              return numA.compareTo(numB);
+            } else if (numA != null) {
+              return -1;
+            } else if (numB != null) {
+              return 1;
+            }
+            return a.routeShortName.compareTo(b.routeShortName);
+          });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,7 +168,7 @@ class _LineCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderColor = isSelected
-        ? Colors.black.withOpacity(0.6)
+        ? Colors.black.withValues(alpha: 0.8)
         : Colors.black12;
 
     return GestureDetector(
@@ -173,7 +184,7 @@ class _LineCard extends StatelessWidget {
             BoxShadow(
               blurRadius: 6,
               offset: const Offset(0, 3),
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha: .08),
             ),
           ],
         ),
@@ -230,7 +241,7 @@ class _BusCard extends StatelessWidget {
           BoxShadow(
             blurRadius: 10,
             offset: const Offset(0, 4),
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: .06),
           ),
         ],
       ),
