@@ -28,25 +28,30 @@ class _MapScreenState extends ConsumerState<MapScreen>
     final mapStyleAsync = ref.watch(mapStyleProvider);
     final mapStyle = mapStyleAsync.value;
 
-    final rawMarkers = ref.watch(markersProvider).value ?? {};
+    final markersAsync = ref.watch(markersProvider);
 
-    final markers = rawMarkers.map((marker) {
-      return marker.copyWith(
-        onTapParam: () {
-          final stopId = marker.markerId.value;
-          final stopName = marker.infoWindow.title ?? "Unknown";
-          mapController.openStopModal(context, stopId, stopName);
-        },
-      );
-    }).toSet();
-
-    return GoogleMap(
-      initialCameraPosition: CameraPosition(target: _center, zoom: 13),
-      onMapCreated: mapController.onMapCreated,
-      style: mapStyle,
-      markers: markers,
-      zoomControlsEnabled: true,
-      mapType: MapType.normal,
+    return markersAsync.when(
+      data: (rawMarkers) {
+        final markers = rawMarkers.map((marker) {
+          return marker.copyWith(
+            onTapParam: () {
+              final stopId = marker.markerId.value;
+              final stopName = marker.infoWindow.title ?? "Unknown";
+              mapController.openStopModal(context, stopId, stopName);
+            },
+          );
+        }).toSet();
+        return GoogleMap(
+          initialCameraPosition: CameraPosition(target: _center, zoom: 13),
+          onMapCreated: mapController.onMapCreated,
+          style: mapStyle,
+          markers: markers,
+          zoomControlsEnabled: true,
+          mapType: MapType.normal,
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stack) => Center(child: Text('Error: $error')),
     );
   }
 }
