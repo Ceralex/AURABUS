@@ -1,3 +1,4 @@
+import 'package:aurabus/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:aurabus/features/account/presentation/widgets/account_section.dart';
 import 'package:aurabus/features/account/presentation/widgets/account_info_body.dart';
@@ -92,9 +93,7 @@ class _AccountPageState extends State<AccountPage> {
               AccountSection(
                 title: 'Logout',
                 isExpanded: false,
-                onTap: () {
-                  // Handle logout action
-                },
+                onTap: () {context.go(AppRoute.login);},
               ),
             ],
           ),
