@@ -18,8 +18,6 @@ class CustomTextField extends StatelessWidget {
       this.obscuretext = false,
     }
     );
-    @override
-
 
   @override
    Widget build(BuildContext context) {
@@ -43,6 +41,7 @@ class CustomTextField extends StatelessWidget {
           TextField
           (
           obscureText: obscuretext,
+          controller:controller,
           style:TextStyle(color: Theme.of(context).colorScheme.secondary,fontSize: 10),
           decoration: 
             InputDecoration(

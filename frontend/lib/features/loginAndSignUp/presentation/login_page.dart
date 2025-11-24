@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage>
                     margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                     child:Clickabletext(
                       textlabel: "forgot your password?", 
-                      fun: () => () {}),
+                      fun: (){}),
                   ),
 
                   Genericbutton(textlabel: 'Login'),
