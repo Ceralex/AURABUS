@@ -5,32 +5,44 @@ components:
       properties:
         routeId:
           type: integer
+          description: "Id of the route"
         routeShortName:
           type: string
+          description: "Short name of the route"
         routeLongName:
           type: string
+          description: "Full name of the route"
         routeColor:
           type: string
           example: "#00A88F"
+          description: "Color associated with the route"
           nullable: true
         busId:
           type: string
-          description: "Id of the bus"
+          description: "Id of the bus. Usually null because the trip has not begun yet"
+          nullable: true
         delay:
           type: integer
+          nullable: true
+          description: "Delay in minutes. It can be negative if the bus is ahead of schedule. Null if the bus has not begun its trip."
         lastStopId:
           type: integer
+          description: "Id of the last stop the bus passed"
         nextStopId:
           type: integer
+          description: "Id of the next stop the bus will pass"
         arrivalTimeScheduled:
           type: string
           format: time
           example: "14:30:00"
+          description: "Scheduled arrival time at the next stop"
         arrivalTimeEstimated:
           type: string
           format: time
-          example: "14:32:15"
+          example: "14:32:00"
+          description: "Estimated arrival time at the next stop. It is useful because it considers real-time delays"
         stopTimes:
           type: array
+          description: "List of stop times for the trip"
           items:
             $ref: '#/components/schemas/StopTime'
