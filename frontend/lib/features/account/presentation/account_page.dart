@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:aurabus/routing/router.dart';
-import 'package:aurabus/features/account/presentation/widgets/account_section.dart';
-import 'package:aurabus/features/account/presentation/widgets/account_info_body.dart';
-import 'package:aurabus/features/account/presentation/widgets/contact_us_body.dart';
-import 'package:aurabus/features/account/presentation/widgets/subscription_body.dart';
+import 'package:aurabus/features/account/widgets/account_info_body.dart';
+import 'package:aurabus/features/account/widgets/account_section.dart';
+import 'package:aurabus/features/account/widgets/contact_us_body.dart';
+import 'package:aurabus/features/account/widgets/subscription_body.dart';
 
 enum AccountSectionType { info, subscription, contact, ranking }
 
