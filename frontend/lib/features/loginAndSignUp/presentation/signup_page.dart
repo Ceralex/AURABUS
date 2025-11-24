@@ -2,7 +2,7 @@ import 'package:aurabus/features/loginAndSignUp/widgets/clickable_text.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/generic_button.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/google_button.dart';
 import 'package:aurabus/features/loginAndSignUp/widgets/custom_text_field.dart';
-import 'package:aurabus/features/loginAndSignUp/widgets/terms_and_conditons.dart';
+import 'package:aurabus/features/loginAndSignUp/widgets/terms_and_conditions.dart';
 import 'package:aurabus/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
