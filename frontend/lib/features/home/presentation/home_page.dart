@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:aurabus/routing/router.dart';
-import 'package:aurabus/features/tickets/presentation/ticket_page.dart';
-import 'package:aurabus/features/map/presentation/map_screen.dart';
-import 'package:aurabus/features/account/presentation/account_page.dart';
 
 class HomePage extends StatefulWidget {
   final Widget child;
@@ -28,10 +25,7 @@ class _HomePageState extends State<HomePage> {
     final currentIndex = _indexFromLocation(context);
 
     return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: const [TicketPage(), MapScreen(), AccountPage()],
-      ),
+      body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) {

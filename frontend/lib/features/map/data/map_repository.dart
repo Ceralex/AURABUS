@@ -7,7 +7,15 @@ import 'models/stop_data.dart';
 import 'models/stop_details.dart';
 
 class MapRepository {
-  final String baseUrl = dotenv.env['API_BASE_URL'] ?? "http://localhost:8888";
+  final String baseUrl;
+
+  MapRepository() : baseUrl = dotenv.env['API_BASE_URL'] ?? '' {
+    if (baseUrl.isEmpty) {
+      throw Exception(
+        'API_BASE_URL environment variable is not set. Please configure it in your .env file.',
+      );
+    }
+  }
 
   Future<List<StopData>> loadLocalStops() async {
     final jsonStr = await rootBundle.loadString('assets/stops.json');
