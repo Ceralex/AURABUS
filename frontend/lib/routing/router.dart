@@ -1,12 +1,16 @@
 import 'package:aurabus/features/loginAndSignUp/presentation/signup_page.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:aurabus/features/home/presentation/home_page.dart';
-import 'package:aurabus/features/map/presentation/map_screen.dart';
 import 'package:aurabus/features/tickets/presentation/ticket_page.dart';
+import 'package:aurabus/features/map/presentation/map_screen.dart';
 import 'package:aurabus/features/account/presentation/account_page.dart';
 import 'package:aurabus/features/loginAndSignUp/presentation/login_page.dart';
+
+final _rootKey = GlobalKey<NavigatorState>();
+final _shellKey = GlobalKey<NavigatorState>();
 
 class AppRoute {
   static const String tickets = '/tickets';
@@ -16,14 +20,10 @@ class AppRoute {
   static const String signup = '/signup';
 }
 
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
-
 final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    navigatorKey: _rootNavigatorKey,
+    navigatorKey: _rootKey,
     initialLocation: AppRoute.map,
-
     routes: [
       GoRoute(
         path: AppRoute.login,
@@ -37,25 +37,19 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ),
           ),
       ShellRoute(
-        navigatorKey: _shellNavigatorKey,
+        navigatorKey: _shellKey,
         builder: (context, state, child) {
           return HomePage(child: child);
         },
         routes: [
           GoRoute(
             path: AppRoute.tickets,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: TicketPage()),
+            builder: (_, _) => const TicketPage(),
           ),
-          GoRoute(
-            path: AppRoute.map,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: MapScreen()),
-          ),
+          GoRoute(path: AppRoute.map, builder: (_, _) => const MapScreen()),
           GoRoute(
             path: AppRoute.account,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: AccountPage()),
+            builder: (_, _) => const AccountPage(),
           ),
         ],
       ),

@@ -24,7 +24,7 @@ export async function connectDb() {
   const { user, pass, host, name } = config.db;
   if (!user || !pass || !host) {
     console.error(
-      "Error: Missing MongoDB environment variables (USER, PASS, or HOST)"
+      "Error: Missing MongoDB environment variables (USER, PASSWORD, or HOST)"
     );
     process.exit(1);
   }
